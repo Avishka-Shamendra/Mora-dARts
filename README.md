@@ -7,8 +7,9 @@ Mobile AR dart game
 2. Open Unity Hub 
 3. Click drop down near "Open" button
 4. Click "Add project from disk"
-5. Then click and open the loaded project
-6. You will only see the changes once you go to "Assets" section in Unity and click "Scenes" folder.
+5. Then navigate to place where you cloned the repo
+6. Click and open the project
+7. You will only see the changes once you go to "Assets" section in Unity and click "Scenes" folder.
 
 
 # Commiting changes
