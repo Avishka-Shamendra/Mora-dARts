@@ -8,7 +8,7 @@ Mobile AR dart game
 3. Click drop down near "Open" button
 4. Click "Add project from disk"
 5. Then navigate to place where you cloned the repo
-6. Click and open the project
+6. Click and open the project foder "Mora dARts" (not Mora-dARTs folder)
 7. You will only see the changes once you go to "Assets" section in Unity and click "Scenes" folder.
 
 
