@@ -3,7 +3,7 @@ Mobile AR dart game
 
 # Installation
 
-1. Clone this repo (recommended to use githib desktop)
+1. Clone this repo (recommended to use github desktop)
 2. Open Unity Hub 
 3. Click drop down near "Open" button
 4. Click "Add project from disk"
