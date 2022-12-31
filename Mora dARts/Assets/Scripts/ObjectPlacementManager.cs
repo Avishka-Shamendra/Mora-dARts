@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class ObjectPlacer : MonoBehaviour
+public class ObjectPlacementManager : MonoBehaviour
 {
     
     public GameObject placementIndicator; // To store the placement indicator we created
