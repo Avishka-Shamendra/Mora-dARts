@@ -7,11 +7,13 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
-    
+
+    public GameObject dartBoard;  // To store the dartboard which will be placed in the posiotion of placement indicator
     public GameObject placementIndicator; // To store the placement indicator we created
     private Pose placementPose; // To store the placement,rotation of the postition selected for placing object
     private Transform placementTransform; // To store and manipulate the position, rotation and scale of the placement plane
     private bool placementPoseIsValid = false; // To store if the placement position is valid
+    private bool isDartboardPlaced = false; // To store if the dartboard placed or not
     private TrackableId selectedPlaneId = TrackableId.invalidId; // To store unique identifier for the selected plane
     ARRaycastManager raycastManager; // To hold the raycast manager.Ray casting allows us to determine where a ray (defined by an origin and direction) intersects with a trackable
     static List<ARRaycastHit> raycastHits = new List<ARRaycastHit>();
@@ -29,8 +31,19 @@ public class ObjectPlacementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdatePlacementPosistion();
-        UpdatePlacementIndicator();   
+        if (!isDartboardPlaced)
+        {
+            // Only excutes if the dartboard is not placed => which ensuers only one dartboard can be placed
+
+            UpdatePlacementPosistion();
+            UpdatePlacementIndicator();
+
+            // Check if the position of placement inidcator is valid and if the user has touched the screen
+            if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                PlaceDartboard();
+            }
+        }
     }
 
     // Find the correct position to place the placement indicator
@@ -64,5 +77,13 @@ public class ObjectPlacementManager : MonoBehaviour
         {
             placementIndicator.SetActive(false); // deactivate the placement indicator
         }
+    }
+
+    // Place the dartboard on the postion of the placement indicator
+    private void PlaceDartboard()
+    {
+        Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
+        isDartboardPlaced = true; 
+        placementIndicator.SetActive(false); // deactivate the placement indicator since it is no longer needed
     }
 }
