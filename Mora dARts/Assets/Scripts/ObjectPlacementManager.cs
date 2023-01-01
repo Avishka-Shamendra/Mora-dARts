@@ -41,7 +41,7 @@ public class ObjectPlacementManager : MonoBehaviour
             UpdatePlacementIndicator();
 
             // Check if the position of placement inidcator is valid and if the user has touched the screen
-            if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (placementPoseIsValid && Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 PlaceDartboard();
             }
@@ -84,9 +84,10 @@ public class ObjectPlacementManager : MonoBehaviour
     // Place the dartboard on the postion of the placement indicator
     private void PlaceDartboard()
     {
-        Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
+        GameObject initBoard = Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
         onDartBoardPlacement?.Invoke();
         isDartboardPlaced = true; 
         placementIndicator.SetActive(false); // deactivate the placement indicator since it is no longer needed
+        initBoard.AddComponent<DartBoardRotator>(); // add script to rotate the dartboard if needed
     }
 }
