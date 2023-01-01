@@ -18,6 +18,8 @@ public class ObjectPlacementManager : MonoBehaviour
     ARRaycastManager raycastManager; // To hold the raycast manager.Ray casting allows us to determine where a ray (defined by an origin and direction) intersects with a trackable
     static List<ARRaycastHit> raycastHits = new List<ARRaycastHit>();
 
+    public static event Action onDartBoardPlacement; // event to braodcast to deactivate surface deduction visuals
+
 
     // Start is called before the first frame update
     void Start(){}
@@ -83,6 +85,7 @@ public class ObjectPlacementManager : MonoBehaviour
     private void PlaceDartboard()
     {
         Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
+        onDartBoardPlacement?.Invoke();
         isDartboardPlaced = true; 
         placementIndicator.SetActive(false); // deactivate the placement indicator since it is no longer needed
     }
