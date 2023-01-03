@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - dart_board
+  - dart
+  - AR Session Origin
+  - DartPosition
   layers:
   - Default
   - TransparentFX
