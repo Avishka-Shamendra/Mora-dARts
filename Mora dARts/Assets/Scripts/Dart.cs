@@ -66,18 +66,19 @@ public class Dart : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("dart_board"))
-    //    {
-    //        // Trigger vibration
-    //        Handheld.Vibrate();
+    // When dart hits a collider, the follwing function is triggered
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("dart_board"))  // Check if the dart collided with the dartboard
+        {
+            // Trigger vibration
+            Handheld.Vibrate();
 
-    //        GetComponent<Rigidbody>().isKinematic = true;
-    //        isDartRotating = false;
+            GetComponent<Rigidbody>().isKinematic = true;  // Disbale physics on the dart
+            isDartRotating = false;  // Stop rotating the dart
 
-    //        // dart hits the board
-    //        dartHit = true;
-    //    }
-    //}
+            // Dart hits the board
+            dartHit = true;
+        }
+    }
 }
