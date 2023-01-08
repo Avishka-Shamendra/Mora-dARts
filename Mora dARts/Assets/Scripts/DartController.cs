@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+
 
 public class DartController : MonoBehaviour
 {
@@ -11,6 +13,11 @@ public class DartController : MonoBehaviour
     GameObject ARCam;  // To store the AR Camera object
     private GameObject DartTemp;  // To store the instantiated the Dart object (placed on the screen)
     private Rigidbody DartRigidBody;  // To store the Rigid Body component of the Dart object
+
+    public TMP_Text pointValue; // To store point value
+    public TMP_Text scoreValue; // To stroe score value
+    private int points = 501;
+    private int score = 50;
 
     void Start()
     {
@@ -45,6 +52,8 @@ public class DartController : MonoBehaviour
 
                     Dart currentDartScript = DartTemp.GetComponent<Dart>();  // Get the current dart script enabled by the placed dart
                     currentDartScript.isForceApplied = true;  // Make the applied force on the dart true
+                    score-=1;
+                    scoreValue.text = score.ToString();
 
                     // Load a new dart
                     InitializeDart();
