@@ -52,8 +52,9 @@ public class DartController : MonoBehaviour
 
                     Dart currentDartScript = DartTemp.GetComponent<Dart>();  // Get the current dart script enabled by the placed dart
                     currentDartScript.isForceApplied = true;  // Make the applied force on the dart true
-                    score-=1;
-                    scoreValue.text = score.ToString();
+                    currentDartScript.pointValue = pointValue; // Pass point value holder to dart script to update points once dart collide with board
+                    score-=1; // update the score value
+                    scoreValue.text = score.ToString(); //update scor value text
 
                     // Load a new dart
                     InitializeDart();
