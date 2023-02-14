@@ -15,7 +15,7 @@ public class Dart : MonoBehaviour
 
     ARSessionOrigin ARSessionOrigin;   // To store the AR Session Origin object
     GameObject ARCam;  // To store the AR Camera object
-    public TMP_Text pointValue = null; // To store point value
+    public TMP_Text PointValue = null; // To store point value
 
     private bool isUpdatingPointValueText = false; // To prevent point value being updated mutiple times by a single dart
 
@@ -96,15 +96,15 @@ public class Dart : MonoBehaviour
             isUpdatingPointValueText = true; // Set the flag to indicate that the point value is currently being updated
             if (pointMap.ContainsKey(colliderName)){ // check if collider is valid
                 int pointMapVal =  pointMap[colliderName];
-                int remaining = int.Parse(pointValue.text) - pointMapVal; // get new point value
+                int remaining = int.Parse(PointValue.text) - pointMapVal; // get new point value
                 if (remaining > 0){ // if points are not zero yet
-                    pointValue.text = remaining.ToString(); // update score
+                    PointValue.text = remaining.ToString(); // update score
                     yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds to allow the point value to be updated smoothly
                     StartCoroutine(ShowDartPointText(0.8f, pointMapVal)); //Show the score for the points score in that round
                 }else if (remaining<0){ 
                     StartCoroutine(ShowTooMuchText(0.8f));
                 }
-                // TODO: remiander = 0 game won
+                // TODO: remiander = 0 game won @dhaura
                
             }
             isUpdatingPointValueText = false; // Reset the flag to indicate that the point value has finished updating
@@ -134,7 +134,7 @@ public class Dart : MonoBehaviour
     {
         GameObject canvas = GameObject.Find("Canvas");
 
-        TMP_Text dartPointText = GameObject.Instantiate(pointValue, canvas.transform); // get a copy of TMP_Text to display the score
+        TMP_Text dartPointText = GameObject.Instantiate(PointValue, canvas.transform); // get a copy of TMP_Text to display the score
         dartPointText.fontSize = 180;
         dartPointText.color = Color.magenta;
         dartPointText.text = points.ToString(); // show the points
@@ -151,10 +151,10 @@ public class Dart : MonoBehaviour
     {
         GameObject canvas = GameObject.Find("Canvas");
 
-        TMP_Text tooMuchText = GameObject.Instantiate(pointValue, canvas.transform); // get a copy of TMP_Text to display the score
+        TMP_Text tooMuchText = GameObject.Instantiate(PointValue, canvas.transform); // get a copy of TMP_Text from PointValue object
         tooMuchText.fontSize = 64;
         tooMuchText.color = Color.magenta;
-        tooMuchText.text = "Too Much"; // show the points
+        tooMuchText.text = "Too Much";
         tooMuchText.alignment = TextAlignmentOptions.Center;
         tooMuchText.rectTransform.localPosition = Vector3.zero;
 
