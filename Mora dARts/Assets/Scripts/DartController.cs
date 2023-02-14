@@ -72,7 +72,7 @@ public class DartController : MonoBehaviour
     // Coroutine to initialize a dart intance on screen
     public IEnumerator WaitAndSpawnDart()
     {
-        yield return new WaitForSeconds(0.1f);  // Wait 0.1 seconds
+        yield return new WaitForSeconds(1.0f);  // Wait 1 second
         DartTemp = Instantiate(DartPrefab, DartIntialPosition.position, ARCam.transform.localRotation);  // Instantiate Dart object
         DartTemp.transform.parent = ARCam.transform;  // Make DartTemp, a child of AR Session Camera
         DartRigidBody = DartTemp.GetComponent<Rigidbody>();  // Assign the Rigid Body of the intiated dart object to DartRigidBody

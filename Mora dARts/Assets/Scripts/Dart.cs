@@ -101,11 +101,31 @@ public class Dart : MonoBehaviour
                     pointValue.text = remaining.ToString(); // update score
                     yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds to allow the point value to be updated smoothly
                     StartCoroutine(ShowDartPointText(0.8f, pointMapVal)); //Show the score for the points score in that round
+                }else if (remaining<0){ 
+                    StartCoroutine(ShowTooMuchText(0.8f));
                 }
                 // TODO: remiander = 0 game won
                
             }
             isUpdatingPointValueText = false; // Reset the flag to indicate that the point value has finished updating
+        }
+    }
+
+    
+
+    // When dart hits a collider, the follwing function is triggered
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("dart_board") && !dartHit)  // Check if the dart collided with the dartboard
+        {
+            // Trigger vibration
+            Handheld.Vibrate();
+
+            GetComponent<Rigidbody>().isKinematic = true;  // Disbale physics on the dart
+            isDartRotating = false;  // Stop rotating the dart
+            StartCoroutine(UpdatePointValue(other.name)); // Co-routine started to update the score
+            // Dart hits the board
+            dartHit = true;
         }
     }
 
@@ -126,19 +146,20 @@ public class Dart : MonoBehaviour
         GameObject.Destroy(dartPointText.gameObject);
     }
 
-    // When dart hits a collider, the follwing function is triggered
-    private void OnTriggerEnter(Collider other)
+    // Method will display "Too Much" if player score more than required points in a throw. Ex: need 23, scores 35
+    IEnumerator ShowTooMuchText(float duration)
     {
-        if (other.CompareTag("dart_board") && !dartHit)  // Check if the dart collided with the dartboard
-        {
-            // Trigger vibration
-            Handheld.Vibrate();
+        GameObject canvas = GameObject.Find("Canvas");
 
-            GetComponent<Rigidbody>().isKinematic = true;  // Disbale physics on the dart
-            isDartRotating = false;  // Stop rotating the dart
-            StartCoroutine(UpdatePointValue(other.name)); // Co-routine started to update the score
-            // Dart hits the board
-            dartHit = true;
-        }
+        TMP_Text tooMuchText = GameObject.Instantiate(pointValue, canvas.transform); // get a copy of TMP_Text to display the score
+        tooMuchText.fontSize = 64;
+        tooMuchText.color = Color.magenta;
+        tooMuchText.text = "Too Much"; // show the points
+        tooMuchText.alignment = TextAlignmentOptions.Center;
+        tooMuchText.rectTransform.localPosition = Vector3.zero;
+
+        yield return new WaitForSeconds(duration); // display text for given time
+
+        GameObject.Destroy(tooMuchText.gameObject);
     }
 }
