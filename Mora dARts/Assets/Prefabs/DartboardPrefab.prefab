@@ -4176,6 +4176,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 72a09e3f1c4554407a02f82a807f51f3, type: 2}
     - target: {fileID: 3396913584297481876, guid: 15836e9efaf8843109faadc50c70e623, type: 3}
+      propertyPath: m_Name
+      value: HitArea.080
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396913584297481876, guid: 15836e9efaf8843109faadc50c70e623, type: 3}
       propertyPath: m_TagString
       value: dart_board
       objectReference: {fileID: 0}
