@@ -4176,6 +4176,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 72a09e3f1c4554407a02f82a807f51f3, type: 2}
     - target: {fileID: 3396913584297481876, guid: 15836e9efaf8843109faadc50c70e623, type: 3}
+      propertyPath: m_Name
+      value: HitArea.080
+      objectReference: {fileID: 0}
+    - target: {fileID: 3396913584297481876, guid: 15836e9efaf8843109faadc50c70e623, type: 3}
       propertyPath: m_TagString
       value: dart_board
       objectReference: {fileID: 0}
@@ -4621,7 +4625,7 @@ MeshCollider:
   m_GameObject: {fileID: 1100228174430187689}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4925,7 +4929,7 @@ MeshCollider:
   m_GameObject: {fileID: 2403919842503851906}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4963,7 +4967,7 @@ MeshCollider:
   m_GameObject: {fileID: 2629796448509366444}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -5120,7 +5124,7 @@ MeshCollider:
   m_GameObject: {fileID: 3394992527313984580}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -5462,7 +5466,7 @@ MeshCollider:
   m_GameObject: {fileID: 5638011095312141197}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -5804,7 +5808,7 @@ MeshCollider:
   m_GameObject: {fileID: 8145966081186791272}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -6013,7 +6017,7 @@ MeshCollider:
   m_GameObject: {fileID: 8747960860049348921}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
