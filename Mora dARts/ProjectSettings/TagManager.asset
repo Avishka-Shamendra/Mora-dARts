@@ -8,6 +8,7 @@ TagManager:
   - dart
   - AR Session Origin
   - DartPosition
+  - Level Manager
   layers:
   - Default
   - TransparentFX

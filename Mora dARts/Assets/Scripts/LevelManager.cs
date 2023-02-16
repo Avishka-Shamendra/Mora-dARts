@@ -23,6 +23,12 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void LoadRules()
+    {
+        // RulesScene
+        SceneManager.LoadScene(3);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit");  

@@ -14,6 +14,8 @@ public class DartController : MonoBehaviour
     private GameObject DartTemp;  // To store the instantiated the Dart object (placed on the screen)
     private Rigidbody DartRigidBody;  // To store the Rigid Body component of the Dart object
 
+    public LevelManager levelManager;  // To store the level manager object
+
     public TMP_Text PointValue; // To store point value
     public TMP_Text ScoreValue; // To store score value
     
@@ -64,6 +66,11 @@ public class DartController : MonoBehaviour
                         int score = int.Parse(ScoreValue.text)-1; // update the score value
                         ScoreValue.text = score.ToString(); //update score value text
                         //TODO: end game if score==0 @dhaura
+                        if (score == 0 || PointValue.text == "0")
+                        {
+                            levelManager.LoadGameOver();
+                        }
+
                         // Load a new dart
                         InitializeDart();
                     }
@@ -115,5 +122,17 @@ public class DartController : MonoBehaviour
         yield return new WaitForSeconds(duration); // display text for given time
 
         GameObject.Destroy(tooCloseText.gameObject);
+    }
+
+    // Method to return score valuye
+    public string getScore()
+    {
+        return ScoreValue.text;
+    }
+
+    // Method to return point valuye
+    public int getPointValue()
+    {
+        return int.Parse(PointValue.text);
     }
 }
