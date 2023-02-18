@@ -29,6 +29,7 @@ public class DartController : MonoBehaviour
     {
         ARSessionOrigin = GameObject.Find("AR Session Origin").GetComponent<ARSessionOrigin>();  // Get the AR Session Origin object from the game scene
         ARCam = ARSessionOrigin.transform.Find("AR Camera").gameObject;  // Get the AR Camera object from the game scene
+        DontDestroyOnLoad(gameObject);  // Should not destroy the Dart Contorller on load of the next scene since it is used to retrieve score and points in the GmaeOver Scene
     }
 
     void OnEnable()
@@ -63,16 +64,20 @@ public class DartController : MonoBehaviour
                         Dart currentDartScript = DartTemp.GetComponent<Dart>();  // Get the current dart script enabled by the placed dart
                         currentDartScript.isForceApplied = true;  // Make the applied force on the dart true
                         currentDartScript.PointValue = PointValue; // Pass point value holder to dart script to update points once dart collide with board
+                        currentDartScript.levelManager = levelManager; // pass level mnanager to dart script
                         int score = int.Parse(ScoreValue.text)-1; // update the score value
                         ScoreValue.text = score.ToString(); //update score value text
+                       
                         //TODO: end game if score==0 @dhaura
-                        if (score == 0 || PointValue.text == "0")
+                        if (score == 0)
                         {
-                            levelManager.LoadGameOver();
+                            StartCoroutine(WaitAndEndGame());
                         }
-
-                        // Load a new dart
-                        InitializeDart();
+                        else
+                        {
+                            // Load a new dart
+                            InitializeDart();
+                        }
                     }
                 } 
             }
@@ -122,6 +127,13 @@ public class DartController : MonoBehaviour
         yield return new WaitForSeconds(duration); // display text for given time
 
         GameObject.Destroy(tooCloseText.gameObject);
+    }
+
+    // Coroutine to end the game
+    public IEnumerator WaitAndEndGame()
+    {
+        yield return new WaitForSeconds(2.0f);  // Wait 2 seconds
+        levelManager.LoadGameOver(); // Load game over scene
     }
 
     // Method to return score valuye

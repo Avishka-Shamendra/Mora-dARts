@@ -11,22 +11,43 @@ public class UIGameOver : MonoBehaviour
 
     void Awake()
     {
-        dartController = FindObjectOfType<DartController>();
+        dartController = FindObjectOfType<DartController>();  // Find and get the Dart Controller object
+        DestroyDarts();  // Destroy all darts
     }
 
     void Start()
     {
-        Score.text = "Score: " + dartController.getScore();
-        int pointValue = dartController.getPointValue();
+        Score.text = "Score: " + dartController.getScore();  // Update the score value
+        int pointValue = dartController.getPointValue();  // Get the point value to decide whether the player won the game
 
         if (pointValue == 0)
         {
+            // Player wins the game
             GameEndTitle.text = "You Won!";
         }
         else
         {
-            GameEndTitle.text = "You Loose!";
+            // Player loses the game
+            GameEndTitle.text = "You Lost!";
         }
 
+        // Destroy the existing dart controller as it is of no use further
+        Destroy(dartController);
+
+    }
+
+    // Method to destroy all darts after the game is over
+    void DestroyDarts()
+    {
+        GameObject[] darts = GameObject.FindGameObjectsWithTag("dart");  // Get all remaining dart objects
+        if (darts.Length > 0)
+        {
+            foreach (GameObject dart in darts)
+            {
+                Destroy(dart);  // Destroy each dart object
+            }
+        }
+
+        Destroy(GameObject.FindGameObjectWithTag("DartPosition"));  // Destroy dart position indicator
     }
 }
