@@ -146,7 +146,7 @@ public class Dart : MonoBehaviour
 
         TMP_Text dartPointText = GameObject.Instantiate(PointValue, canvas.transform); // get a copy of TMP_Text to display the score
         dartPointText.fontSize = 180;
-        dartPointText.color = Color.magenta;
+        dartPointText.color = Color.green;
         dartPointText.text = points.ToString(); // show the points
         dartPointText.alignment = TextAlignmentOptions.Center;
         dartPointText.rectTransform.localPosition = Vector3.zero;
@@ -163,7 +163,7 @@ public class Dart : MonoBehaviour
 
         TMP_Text tooMuchText = GameObject.Instantiate(PointValue, canvas.transform); // get a copy of TMP_Text from PointValue object
         tooMuchText.fontSize = 64;
-        tooMuchText.color = Color.magenta;
+        tooMuchText.color = Color.red;
         tooMuchText.text = "Too Much";
         tooMuchText.alignment = TextAlignmentOptions.Center;
         tooMuchText.rectTransform.localPosition = Vector3.zero;
