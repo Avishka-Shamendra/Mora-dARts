@@ -14,6 +14,8 @@ public class DartController : MonoBehaviour
     private GameObject DartTemp;  // To store the instantiated the Dart object (placed on the screen)
     private Rigidbody DartRigidBody;  // To store the Rigid Body component of the Dart object
 
+    public LevelManager levelManager;  // To store the level manager object
+
     public TMP_Text PointValue; // To store point value
     public TMP_Text ScoreValue; // To store score value
     
@@ -27,6 +29,7 @@ public class DartController : MonoBehaviour
     {
         ARSessionOrigin = GameObject.Find("AR Session Origin").GetComponent<ARSessionOrigin>();  // Get the AR Session Origin object from the game scene
         ARCam = ARSessionOrigin.transform.Find("AR Camera").gameObject;  // Get the AR Camera object from the game scene
+        DontDestroyOnLoad(gameObject);  // Should not destroy the Dart Contorller on load of the next scene since it is used to retrieve score and points in the GmaeOver Scene
     }
 
     void OnEnable()
@@ -44,7 +47,7 @@ public class DartController : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)  // Check if there's a touch input by the user
         {
             float distance= float.Parse(DistanceValue.text.Substring(0, 3));
-            if(distance< 1.5) { // if player is too close to throw
+            if(distance < 1.5) { // if player is too close to throw
                 StartCoroutine(ShowTooCloseText(0.8f));
             } else {
                 Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);  // Get a ray that is going through the touch point of the user
@@ -61,11 +64,20 @@ public class DartController : MonoBehaviour
                         Dart currentDartScript = DartTemp.GetComponent<Dart>();  // Get the current dart script enabled by the placed dart
                         currentDartScript.isForceApplied = true;  // Make the applied force on the dart true
                         currentDartScript.PointValue = PointValue; // Pass point value holder to dart script to update points once dart collide with board
+                        currentDartScript.levelManager = levelManager; // pass level mnanager to dart script
                         int score = int.Parse(ScoreValue.text)-1; // update the score value
                         ScoreValue.text = score.ToString(); //update score value text
+                       
                         //TODO: end game if score==0 @dhaura
-                        // Load a new dart
-                        InitializeDart();
+                        if (score == 0)
+                        {
+                            StartCoroutine(WaitAndEndGame());
+                        }
+                        else
+                        {
+                            // Load a new dart
+                            InitializeDart();
+                        }
                     }
                 } 
             }
@@ -115,5 +127,24 @@ public class DartController : MonoBehaviour
         yield return new WaitForSeconds(duration); // display text for given time
 
         GameObject.Destroy(tooCloseText.gameObject);
+    }
+
+    // Coroutine to end the game
+    public IEnumerator WaitAndEndGame()
+    {
+        yield return new WaitForSeconds(2.0f);  // Wait 2 seconds
+        levelManager.LoadGameOver(); // Load game over scene
+    }
+
+    // Method to return score valuye
+    public string getScore()
+    {
+        return ScoreValue.text;
+    }
+
+    // Method to return point valuye
+    public int getPointValue()
+    {
+        return int.Parse(PointValue.text);
     }
 }

@@ -16,6 +16,7 @@ public class Dart : MonoBehaviour
     ARSessionOrigin ARSessionOrigin;   // To store the AR Session Origin object
     GameObject ARCam;  // To store the AR Camera object
     public TMP_Text PointValue = null; // To store point value
+    public LevelManager levelManager;  // To store Level Manager object
 
     private bool isUpdatingPointValueText = false; // To prevent point value being updated mutiple times by a single dart
 
@@ -101,9 +102,18 @@ public class Dart : MonoBehaviour
                     PointValue.text = remaining.ToString(); // update score
                     yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds to allow the point value to be updated smoothly
                     StartCoroutine(ShowDartPointText(0.8f, pointMapVal)); //Show the score for the points score in that round
-                }else if (remaining<0){ 
+                } 
+                else if (remaining < 0)
+                { 
                     StartCoroutine(ShowTooMuchText(0.8f));
+                } 
+                else
+                {
+                    PointValue.text = remaining.ToString(); // update score
+                    yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds to allow the point value to be updated smoothly
+                    levelManager.LoadGameOver(); // Load game over scene
                 }
+
                 // TODO: remiander = 0 game won @dhaura
                
             }
