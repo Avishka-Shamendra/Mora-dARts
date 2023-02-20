@@ -47,7 +47,7 @@ public class DartController : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)  // Check if there's a touch input by the user
         {
             float distance= float.Parse(DistanceValue.text.Substring(0, 3));
-            if(distance< 1.5) { // if player is too close to throw
+            if(distance < 1.5) { // if player is too close to throw
                 StartCoroutine(ShowTooCloseText(0.8f));
             } else {
                 Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);  // Get a ray that is going through the touch point of the user
