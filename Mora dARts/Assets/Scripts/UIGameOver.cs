@@ -46,13 +46,16 @@ public class UIGameOver : MonoBehaviour
             GameEndTitle.text = "You Lost!";
         }
 
-        // Destroy the existing dart controller as it is of no use further
-        Destroy(dartController);
+        GameObject arSessionOrigin = GameObject.FindGameObjectWithTag("AR Session Origin");  // Find and get the Dart Position Indicator game object
+        if (arSessionOrigin != null) 
+        {
+            Destroy(arSessionOrigin);  // Destroy dart position indicator
+        }
 
     }
 
     // Method to destroy all darts after the game is over
-    void DestroyDarts()
+    private void DestroyDarts()
     {
         GameObject[] darts = GameObject.FindGameObjectsWithTag("dart");  // Get all remaining dart objects
         if (darts.Length > 0)
@@ -62,7 +65,5 @@ public class UIGameOver : MonoBehaviour
                 Destroy(dart);  // Destroy each dart object
             }
         }
-
-        Destroy(GameObject.FindGameObjectWithTag("DartPosition"));  // Destroy dart position indicator
     }
 }
