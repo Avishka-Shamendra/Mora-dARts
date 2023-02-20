@@ -84,9 +84,10 @@ public class ObjectPlacementManager : MonoBehaviour
     // Place the dartboard on the postion of the placement indicator
     private void PlaceDartboard()
     {
-        Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
+        GameObject initDartboard = Instantiate(dartBoard, placementPose.position, placementTransform.rotation); // inititate the dartboard game object
         onDartBoardPlacement?.Invoke();
         isDartboardPlaced = true; 
         placementIndicator.SetActive(false); // deactivate the placement indicator since it is no longer needed
+        initDartboard.AddComponent<DartBoardRotator>(); // add script to rotate the dartboard if needed
     }
 }

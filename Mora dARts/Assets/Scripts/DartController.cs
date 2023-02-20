@@ -44,7 +44,7 @@ public class DartController : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)  // Check if there's a touch input by the user
+        if (Input.touchCount ==1 && Input.GetTouch(0).phase == TouchPhase.Began)  // Check if there's a touch input by the user
         {
             float distance= float.Parse(DistanceValue.text.Substring(0, 3));
             if(distance < 0.8 && isDartBoardSearched) { // if player is too close to throw
