@@ -113,9 +113,6 @@ public class Dart : MonoBehaviour
                     yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds to allow the point value to be updated smoothly
                     levelManager.LoadGameOver(); // Load game over scene
                 }
-
-                // TODO: remiander = 0 game won @dhaura
-               
             }
             isUpdatingPointValueText = false; // Reset the flag to indicate that the point value has finished updating
         }

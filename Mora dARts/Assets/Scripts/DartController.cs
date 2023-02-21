@@ -68,7 +68,6 @@ public class DartController : MonoBehaviour
                         int score = int.Parse(ScoreValue.text)-1; // update the score value
                         ScoreValue.text = score.ToString(); //update score value text
                        
-                        //TODO: end game if score==0 @dhaura
                         if (score == 0)
                         {
                             StartCoroutine(WaitAndEndGame());
