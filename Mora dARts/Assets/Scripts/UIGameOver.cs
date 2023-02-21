@@ -31,7 +31,7 @@ public class UIGameOver : MonoBehaviour
         }
         else
         {
-            // Dsiplay previous highest score
+            // Display previous highest score
             HighScore.text = "Highest Score: " + highestScore.ToString();
         }
 

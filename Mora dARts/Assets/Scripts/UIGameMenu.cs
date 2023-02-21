@@ -16,7 +16,7 @@ public class UIGameMenu : MonoBehaviour
         }
     }
 
-    // Method to destroy all darts after the game is over
+    // Method to destroy all darts after the game is calcelled
     private void DestroyDarts()
     {
         GameObject[] darts = GameObject.FindGameObjectsWithTag("dart");  // Get all remaining dart objects
