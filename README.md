@@ -18,8 +18,8 @@ Introducing _**Mora dARts**_, a **single-player AR dart game** for mobile device
 
 ## Device Requirements 
 In order to successfully install the app, the following device requirements must be met:
-* The device or emulator must be running Android 7.0 (API level 24) or higher
-AR Core support must be available. 
+* The device or emulator must be running Android 7.0 (API level 24) or higher.
+* AR Core support must be available. 
 * You can check whether your device supports AR core from visiting https://developers.google.com/ar/devices.
 * A high-quality rear-facing camera is necessary.
 * The device must have a touch-sensitive screen.
