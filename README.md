@@ -26,7 +26,7 @@ In order to successfully install the app, the following device requirements must
 * At least 100 MB of free space on the device.
 
 ## Installation Steps
-* To download the Mora Darts APK onto your Android device, begin by visiting https://dms.uom.lk/s/8kwHEnkwNPtREKq.
+* To download the Mora Darts APK onto your Android device, begin by visiting https://github.com/Avishka-Shamendra/Mora-dARts/releases/download/v1.0.0/Mora-dARts-v1.0.0.apk.
 * Once the APK has been downloaded, proceed to install the application on your mobile device. 
 * Keep in mind that a security warning may be displayed on your phone due to the app not being downloaded from the Play Store. In this case, simply acknowledge the warning and continue with the installation process.
 
